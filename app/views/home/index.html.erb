@@ -1,43 +1,46 @@
-<div class="container text-center">
-  <div class="row align-items-start">
-    <div class="col">
-<table>
-    <tr>
-        <td>user_signed_in?</td>
-        <td><%= user_signed_in? %></td>
-    </tr>
-    <tr>
-        <td>current_user</td>
-        <td><%= current_user.email %></td>
-    </tr>
-    <tr>
-        <td>user_session</td>
-        <td><%= user_session %></td>
-    </tr>
-    <tr>
-        <tr>
-            <td><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></td>
-        </tr>
-    </tr>
-</table>
+<div class="container text-left">
+    <div class="row align-items-start">
+        <div class="col">
+            <table>
+                <tr>
+                    <td>user_signed_in?</td>
+                    <td><%= user_signed_in? %></td>
+                </tr>
+                <tr>
+                    <td>current_user</td>
+                    <td><%= current_user.email %></td>
+                </tr>
+                <tr>
+                    <td>user_session</td>
+                    <td><%= user_session %></td>
+                </tr>
+                <tr>
+                    <tr>
+                        <td><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></td>
+                    </tr>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col text-center">
+            <h1>Welcome to... <br/>
+                💃🕺 The Party 🕺💃</h1>   
+        </div>
+
+        <div class="col">
+            <h2>Followers</h2>
+            <h2>Requests Sent</h2>  
+                <ol>
+                    <% @user.follow_requests_sent.each do |u|  %>
+                    <li><%=u.receiver.email%></li>
+                    <% end %>
+                </ol>
+            <h2>Requests Received</h2>
+                <ol>
+                    <% @user.follow_requests_received.each do |u|  %>
+                    <li><%=u.sender.email%></li>
+                    <% end %>
+                </ol>
+        </div>   
     </div>
-    <div class="col">
-<h1>Welcome to... <br/>
-    💃🕺 The Party 🕺💃</h1>    </div>
-    <div class="col">
-    <h2>Followers</h2>
-    <h2>Requests Sent</h2>  
-        <ol>
-            <% @user.follow_requests_sent.each do |u|  %>
-            <li><%=u.receiver.email%></li>
-            <% end %>
-        </ol>
-    <h2>Requests Received</h2>
-        <ol>
-            <% @user.follow_requests_received.each do |u|  %>
-            <li><%=u.sender.email%></li>
-            <% end %>
-        </ol>
-    </div>    </div>
-  </div>
 </div>
