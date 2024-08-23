@@ -13,4 +13,9 @@
         <td>user_session</td>
         <td><%= user_session %></td>
     </tr>
+    <tr>
+        <tr>
+            <td><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></td>
+        </tr>
+    </tr>
 </table>
