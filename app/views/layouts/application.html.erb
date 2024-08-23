@@ -21,10 +21,15 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <div class="container">
-      <div class="row  text-center">
-          <div class="col">
-              <h1>💃🕺 Welcome to The Party 🕺💃</h1>   
-          </div>
+      <div class="row ">
+        <div class="col text-left">
+          <%= link_to("🏠", root_path) %>
+        </div> 
+        <div class="col text-center">
+          <h1>💃🕺 Welcome to The Party 🕺💃</h1>   
+        </div>
+        <div class="col">
+        </div>
       </div>
       <%= yield %>
     </div>

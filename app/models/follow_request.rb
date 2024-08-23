@@ -10,4 +10,8 @@ class FollowRequest < ApplicationRecord
       errors.add(:sender_id, "can't follow self")
     end
   end
+
+  def accept
+    Follower.create(user_id: receiver_id, follower_id: sender_id)
+  end
 end

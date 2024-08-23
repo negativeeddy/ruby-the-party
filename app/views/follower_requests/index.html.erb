@@ -1,0 +1,16 @@
+<div class="col">
+    <H2>Requests Sent</H2>
+    <% @requests_sent.each do |r| %>
+        <div>
+            <%= r.receiver.email %>
+        </div>
+    <% end %>
+    <H2>Requests Received</H2>
+    <% @requests_received.each do |r| %>
+        <div>
+            <%= r.sender.email %>
+            <%= link_to "Accept", follower_request_path(r.id), method: :put %>
+            <%= link_to "Reject", follower_request_path(r.id), method: :delete %>
+        </div>
+    <% end %>
+</div>

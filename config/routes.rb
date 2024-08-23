@@ -12,4 +12,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "home#index"
+
+  post "follower_requests/:user_id" => "follower_requests#create", as: :follower_create_specific
+
+  resources :follower_requests
 end
