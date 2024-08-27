@@ -1,15 +1,15 @@
 <div>
-    <% puts post.inspect %>
     <h6>from <%= post.author.email %> at <%= post.created_at%></h6>
     <% @replies = post.replies.to_a %>
     <p><%= post.content %> 
         (
         <%= link_to "#{@replies.count} replies", controller: "posts", action: "show", id: post.id %>
         )
+    <table style="margin-left:40px"><tr><td><%= link_to "reply", controller: "posts", action: "new", reply_to: post.id %></td></tr></table>
     </p>
 
     <% 
-    if (post.media != nil)
+    if !post.media.blank?
         concat "<div>#{image_tag post.media}</div>"
     end 
     %>

@@ -1,5 +1,6 @@
 <div>
     <h3>Posts</h3>
+    <%= link_to "New Post", controller: "posts", action: "new" %>
     <ul class="list-group">
         <% @posts.each do |p| %>
             <li class="list-group"> 
