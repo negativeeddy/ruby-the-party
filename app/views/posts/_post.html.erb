@@ -5,7 +5,9 @@
         (
         <%= link_to "#{@replies.count} replies", controller: "posts", action: "show", id: post.id %>
         )
-    <table style="margin-left:40px"><tr><td><%= link_to "reply", controller: "posts", action: "new", reply_to: post.id %></td></tr></table>
+    <span style="margin-left:40px" class="no-underline">
+        <br/><%= link_to "💬", { controller: "posts", action: "new", params: { :reply_to => post.id } } , style: 'text-decoration:none' %>
+    </span>
     </p>
 
     <% 
