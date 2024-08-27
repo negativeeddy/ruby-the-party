@@ -14,15 +14,17 @@
     end 
     %>
 
+    <% if expand_replies%>
     <hr/>
 
     <div style="margin-left:40px">
         <ul class="list-group">
             <% @replies.each do |r| %>
                 <li class="list-group"><div>
-                <%= render partial: "posts/post", locals: {post:r} %>
+                <%= render partial: "posts/post", locals: {post:r, expand_replies:true} %>
                 </li>
             <% end %>
         </ul>
     </div>  
+    <% end %>
 </div>
