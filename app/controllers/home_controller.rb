@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @user = User.find(current_user.id)
-    @users = User.all.map { |u| { id: u.id, email: u.email, is_following: u.followers.any? { |f| f.id == @user.id  } } }
+    @posts = Post.all.select { |u| u.parent_id == nil }
+                     .sort_by { |x| x[:created_at] }.reverse
   end
 end

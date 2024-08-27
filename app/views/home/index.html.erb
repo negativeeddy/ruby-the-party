@@ -1,81 +1,10 @@
-
-    <div class="row align-items-start">
-        <div class="col">
-            <h2>Profile</h2>
-            <div><%= current_user.email %></div>
-            <div><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></div>
-
-              <div style="border-style:solid; padding:15px">
-                <h2>Following</h2>
-                <div>
-                    <% if @user.following.any?  %>
-                        <ol>
-                            <% @user.following.each do |u|  %>
-                            <li><%=u.email%></li>
-                            <% end %>
-                        </ol>
-                    <% else %>
-                        <p>n/a</p>
-                    <% end %>
-                </div>
-            </div>
-        </div>
-
-        <div class="col text-center">
-          <h3>look who's here!</h3>
-            <ul class="list-group">
-                <% @users.each do |user| %>
-                    <% if (user[:id] != current_user.id)  %>
-                        <li class="list-group-item"><%= user[:email] %>  
-                            <%=if user[:is_following]
-                                    button_to 'unfollow', follower_request_path(current_user.id), params: {follow_id: user[:id]}, method: :delete 
-                            else 
-                                    button_to 'follow', follower_request_path(current_user.id), params: {follow_id: user[:id]}, method: :post
-                            end %>
-                        </li>
-                    <% end %>
-                <% end %>
-            </ul>
-        </div>
-
-        <div class="col">
-            <div style="border-style:solid; padding:15px">
-                <h2>Followers</h2>
-                <div>
-                    <% if @user.followers.any?  %>
-                        <ol>
-                            <% @user.followers.each do |u|  %>
-                            <li><%=u.email%></li>
-                            <% end %>
-                        </ol>
-                    <% else %>
-                        <p>n/a</p>
-                    <% end %>
-                </div>
-            </div>
-            <% # TODO: This should be a partial %>
-            <div style="border-style:solid; padding:15px">
-                <h3><%= link_to("Requests", follower_requests_path) %></h3>  
-                <h4>Sent</h4>
-                    <% if @user.follow_requests_sent.any? %>
-                        <ul>
-                            <% @user.follow_requests_sent.each do |u|  %>
-                            <li><%=u.receiver.email%></li>
-                            <% end %>
-                        </ul>
-                    <% else %>
-                        <p>n/a</p>
-                    <% end %>
-                <h4>Received</h4>
-                    <% if @user.follow_requests_received.any? %>
-                        <ul>
-                            <% @user.follow_requests_received.each do |u|  %>
-                            <li><%=u.sender.email%></li>
-                            <% end %>
-                        </ul>
-                    <% else %>
-                        <p>n/a</p>
-                    <% end %>
-            </div>
-        </div>   
-    </div>
+<div>
+    <h3>Posts</h3>
+    <ul class="list-group">
+        <% @posts.each do |p| %>
+            <li class="list-group"> 
+                <%= render partial: "posts/post", locals: { post: p } %>
+            </li>
+        <% end %>
+    </ul>
+</div>

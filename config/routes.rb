@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   post "follower_requests/:user_id" => "follower_requests#create", as: :follower_create_specific
 
   resources :follower_requests
+
+  resources :posts
 end
