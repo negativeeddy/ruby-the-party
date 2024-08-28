@@ -1,0 +1,28 @@
+<% if @parentPost != nil %>
+          <h1>REPLY TO</h1>
+          <%= render partial: "posts/post", locals: {post:@parentPost, expand_replies:false} %>
+        <% else %>
+         <h1>NEW POST</h1>
+   %<% end %>
+
+<%= form_with(model: @post, local: true) do |form| %>
+  <div class="field">
+	<%= form.label :content %>
+	<%= form.text_area :content %>
+  </div>
+
+  <div class="field">
+	<%= form.label :media %>
+	<%= form.text_field :media %>
+  </div>
+
+    
+    <%= if @post.parent_id != nil
+            form.hidden_field :parent_id, value:  @post.parent_id
+        end
+     %>
+
+  <div class="actions">
+	<%= form.submit "Save" %>
+  </div>
+<% end %>

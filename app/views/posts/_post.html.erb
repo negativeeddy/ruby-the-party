@@ -1,28 +1,29 @@
 <div>
-    <% puts post.inspect %>
     <h6>from <%= post.author.email %> at <%= post.created_at%></h6>
     <% @replies = post.replies.to_a %>
-    <p><%= post.content %> 
-        (
-        <%= link_to "#{@replies.count} replies", controller: "posts", action: "show", id: post.id %>
-        )
+    <p><%= link_to "#{post.content} (#{@replies.count} replies)", { controller: "posts", action: "show", id: post.id}, style: 'text-decoration:none' %>
+    <span style="margin-left:40px" class="no-underline">
+        <br/><%= link_to "💬", { controller: "posts", action: "new", params: { :reply_to => post.id } } , style: 'text-decoration:none' %>
+    </span>
     </p>
 
     <% 
-    if (post.media != nil)
+    if !post.media.blank?
         concat "<div>#{image_tag post.media}</div>"
     end 
     %>
 
+    <% if expand_replies%>
     <hr/>
 
     <div style="margin-left:40px">
         <ul class="list-group">
             <% @replies.each do |r| %>
                 <li class="list-group"><div>
-                <%= render partial: "posts/post", locals: {post:r} %>
+                <%= render partial: "posts/post", locals: {post:r, expand_replies:true} %>
                 </li>
             <% end %>
         </ul>
     </div>  
+    <% end %>
 </div>
